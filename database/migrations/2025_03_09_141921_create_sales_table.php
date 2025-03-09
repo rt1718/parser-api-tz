@@ -12,10 +12,14 @@ class CreateSalesTable extends Migration
             $table->id();
             $table->string('sale_id')
                 ->unique();
-            $table->foreignId('nm_id')
-                ->constrained('products', 'nm_id');
-            $table->foreignId('income_id')
-                ->constrained('incomes', 'income_id');
+            $table->unsignedBigInteger('nm_id');
+            $table->foreign('nm_id')
+                ->references('nm_id')
+                ->on('products');
+            $table->unsignedBigInteger('income_id');
+            $table->foreign('income_id')
+                ->references('income_id')
+                ->on('incomes');
             $table->decimal('discount_percent', 5, 2);
             $table->decimal('price_with_disc', 10, 2);
             $table->decimal('for_pay', 10, 2);
