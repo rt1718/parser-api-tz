@@ -22,18 +22,14 @@ class CreateOrdersTable extends Migration
             $table->string('oblast', 255);
             $table->unsignedBigInteger('income_id');
             $table->foreign('income_id')
-                ->references('income_id')
-                ->on('incomes');
-            $table->bigInteger('odid');
+                ->references('income_id')->on('incomes');
             $table->unsignedBigInteger('nm_id');
-            $table->foreign('nm_id')
-                ->references('nm_id')
-                ->on('products');
             $table->string('subject', 255);
             $table->string('category', 255);
             $table->string('brand', 255);
             $table->boolean('is_cancel');
-            $table->dateTime('cancel_dt')->nullable();
+            $table->dateTime('cancel_dt')
+                ->nullable();
             $table->timestamps();
         });
     }

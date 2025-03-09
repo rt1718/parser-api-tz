@@ -12,9 +12,6 @@ class CreateIncomesTable extends Migration
             $table->unsignedBigInteger('income_id')
                 ->primary();
             $table->unsignedBigInteger('nm_id');
-            $table->foreign('nm_id')
-                ->references('nm_id')
-                ->on('products');
             $table->string('number', 50)
                 ->nullable();
             $table->dateTime('date');

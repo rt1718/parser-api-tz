@@ -22,8 +22,7 @@ class CreateStocksTable extends Migration
             $table->string('warehouse_name', 255);
             $table->integer('in_way_to_client');
             $table->integer('in_way_from_client');
-            $table->foreignId('nm_id')
-                ->constrained('products', 'nm_id');
+            $table->unsignedBigInteger('nm_id');
             $table->string('subject', 255);
             $table->string('category', 255);
             $table->string('brand', 255);

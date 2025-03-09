@@ -13,9 +13,6 @@ class CreateSalesTable extends Migration
             $table->string('sale_id')
                 ->unique();
             $table->unsignedBigInteger('nm_id');
-            $table->foreign('nm_id')
-                ->references('nm_id')
-                ->on('products');
             $table->unsignedBigInteger('income_id');
             $table->foreign('income_id')
                 ->references('income_id')
