@@ -5,17 +5,42 @@ namespace App\Http\Services;
 use Illuminate\Support\Facades\Http;
 use App\Http\Repositories\IncomeRepository;
 
+/**
+ * Сервис для парсинга и сохранения данных о доходах.
+ */
 class IncomeService
 {
+    /**
+     * @var IncomeRepository Репозиторий для работы с доходами.
+     */
     protected IncomeRepository $incomeRepository;
+
+    /**
+     * @var string URL API для получения данных о доходах.
+     */
     protected string $apiUrl = 'http://89.108.115.241:6969/api/incomes';
+
+    /**
+     * @var string API-ключ для авторизации в сервисе.
+     */
     protected string $apiKey = 'E6kUTYrYwZq2tN4QEtyzsbEBk3ie';
 
+    /**
+     * Конструктор сервиса.
+     *
+     * @param IncomeRepository $incomeRepository Репозиторий для доходов.
+     */
     public function __construct(IncomeRepository $incomeRepository)
     {
         $this->incomeRepository = $incomeRepository;
     }
 
+    /**
+     * Парсит данные о доходах за указанный период и сохраняет в БД.
+     *
+     * @param string $dateFrom Начальная дата в формате Y-m-d.
+     * @param string $dateTo Конечная дата в формате Y-m-d.
+     */
     public function parseIncomes(string $dateFrom, string $dateTo): void
     {
         $page = 1;
