@@ -16,4 +16,3 @@ https://github.com/cy322666/wb-api/tree/master
 https://free13.beget.com/phpMyAdmin
 * `u91566g1_api_tz` логин
 * `%35q11GFFICF` пароль
-* 
