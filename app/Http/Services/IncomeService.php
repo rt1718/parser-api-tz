@@ -19,7 +19,7 @@ class IncomeService
     public function parseIncomes(string $dateFrom, string $dateTo): void
     {
         $page = 1;
-        $limit = 100;
+        $limit = 500;
 
         do {
             $response = Http::get($this->apiUrl, [
