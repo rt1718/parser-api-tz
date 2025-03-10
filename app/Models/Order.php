@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'g_number',
         'date',
+        'g_number',
         'last_change_date',
         'supplier_article',
         'tech_size',
@@ -20,8 +20,11 @@ class Order extends Model
         'oblast',
         'income_id',
         'nm_id',
+        'subject',
+        'category',
+        'brand',
         'is_cancel',
-        'cancel_dt'
+        'cancel_dt',
     ];
 
 }

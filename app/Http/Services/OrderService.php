@@ -19,7 +19,7 @@ class OrderService
     public function parseOrders(string $dateFrom, string $dateTo): void
     {
         $page = 1;
-        $limit = 500;
+        $limit = 100;
 
         do {
             $response = Http::get($this->apiUrl, [
@@ -37,10 +37,10 @@ class OrderService
             $data = $response->json()['data'] ?? [];
 
             foreach ($data as $item) {
-                $this->orderRepository->updateOrCreate(
-                    ['g_number' => $item['g_number']],
+                $this->orderRepository->create(
                     [
                         'date' => $item['date'] ?? null,
+                        'g_number' => $item['g_number'] ?? null,
                         'last_change_date' => $item['last_change_date'] ?? null,
                         'supplier_article' => $item['supplier_article'] ?? null,
                         'tech_size' => $item['tech_size'] ?? null,

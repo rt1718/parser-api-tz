@@ -19,7 +19,7 @@ class SaleService
     public function parseSales(string $dateFrom, string $dateTo): void
     {
         $page = 1;
-        $limit = 500;
+        $limit = 100;
 
         do {
             $response = Http::get($this->apiUrl, [
@@ -37,8 +37,7 @@ class SaleService
             $data = $response->json()['data'] ?? [];
 
             foreach ($data as $item) {
-                $this->saleRepository->updateOrCreate(
-                    ['sale_id' => $item['sale_id']],
+                $this->saleRepository->create(
                     [
                         'nm_id' => $item['nm_id'] ?? null,
                         'income_id' => $item['income_id'] ?? null,

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Sale extends Model
 {
     protected $fillable = [
-        'sale_id',
         'nm_id',
         'income_id',
         'discount_percent',

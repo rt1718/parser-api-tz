@@ -7,15 +7,8 @@ use App\Models\Sale;
 
 class SaleRepository implements BaseRepositoryInterface
 {
-    protected Sale $sale;
-
-    public function __construct(Sale $sale)
+    public function create(array $data): void
     {
-        $this->sale = $sale;
-    }
-
-    public function updateOrCreate(array $conditions, array $data): void
-    {
-        $this->sale->updateOrCreate($conditions, $data);
+        Sale::create($data);
     }
 }

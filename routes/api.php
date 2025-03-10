@@ -19,5 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/parse', [ParserController::class, 'fetchAll']);
-
+Route::prefix('parse')->group(function () {
+    Route::post('/incomes', [ParserController::class, 'parseIncomes']);
+    Route::post('/orders', [ParserController::class, 'parseOrders']);
+    Route::post('/sales', [ParserController::class, 'parseSales']);
+    Route::post('/stocks', [ParserController::class, 'parseStocks']);
+});

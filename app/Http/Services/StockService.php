@@ -19,7 +19,7 @@ class StockService
     public function parseStocks(string $dateFrom, string $dateTo): void
     {
         $page = 1;
-        $limit = 500;
+        $limit = 100;
 
         do {
             $response = Http::get($this->apiUrl, [
@@ -37,8 +37,7 @@ class StockService
             $data = $response->json()['data'] ?? [];
 
             foreach ($data as $item) {
-                $this->stockRepository->updateOrCreate(
-                    ['nm_id' => $item['nm_id']],
+                $this->stockRepository->create(
                     [
                         'date' => $item['date'] ?? null,
                         'last_change_date' => $item['last_change_date'] ?? null,
@@ -52,6 +51,7 @@ class StockService
                         'warehouse_name' => $item['warehouse_name'] ?? null,
                         'in_way_to_client' => $item['in_way_to_client'] ?? 0,
                         'in_way_from_client' => $item['in_way_from_client'] ?? 0,
+                        'nm_id' => $item['nm_id'],
                         'subject' => $item['subject'] ?? null,
                         'category' => $item['category'] ?? null,
                         'brand' => $item['brand'] ?? null,

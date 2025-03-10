@@ -29,17 +29,43 @@ class ParserController extends Controller
         $this->incomeService = $incomeService;
     }
 
-    public function fetchAll(): JsonResponse
+
+    public function parseIncomes(): JsonResponse
     {
-        $dateFrom = Carbon::create(2024, 3, 9)->toDateString();
+        $dateFrom = Carbon::create(2024, 3, 10)->toDateString();
         $dateTo = now()->toDateString();
-        $dateStocks = Carbon::create(2025, 3, 9)->toDateString();
 
         $this->incomeService->parseIncomes($dateFrom, $dateTo);
-        sleep(3);
-        $this->stockService->parseStocks($dateStocks, $dateTo);
+
+        return response()->json(['message' => 'Данные успешно загружены!']);
+    }
+
+    public function parseOrders(): JsonResponse
+    {
+        $dateFrom = Carbon::create(2024, 3, 10)->toDateString();
+        $dateTo = now()->toDateString();
+
         $this->orderService->parseOrders($dateFrom, $dateTo);
+
+        return response()->json(['message' => 'Данные успешно загружены!']);
+    }
+
+    public function parseSales(): JsonResponse
+    {
+        $dateFrom = Carbon::create(2024, 3, 10)->toDateString();
+        $dateTo = now()->toDateString();
+
         $this->saleService->parseSales($dateFrom, $dateTo);
+
+        return response()->json(['message' => 'Данные успешно загружены!']);
+    }
+
+    public function parseStocks(): JsonResponse
+    {
+        $dateFrom = Carbon::create(2024, 3, 10)->toDateString();
+        $dateTo = now()->toDateString();
+
+        $this->stockService->parseStocks($dateFrom, $dateTo);
 
         return response()->json(['message' => 'Данные успешно загружены!']);
     }

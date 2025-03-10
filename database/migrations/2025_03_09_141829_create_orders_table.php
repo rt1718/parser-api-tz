@@ -40,8 +40,7 @@ class CreateOrdersTable extends Migration
                 ->nullable();
             $table->string('brand', 255)
                 ->nullable();
-            $table->boolean('is_cancel')
-                ->default(0);
+            $table->boolean('is_cancel');
             $table->dateTime('cancel_dt')
                 ->nullable();
             $table->timestamps();

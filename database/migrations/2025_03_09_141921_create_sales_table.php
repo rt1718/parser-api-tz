@@ -10,8 +10,6 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->string('sale_id')
-                ->nullable();
             $table->bigInteger('nm_id')
                 ->nullable();
             $table->bigInteger('income_id')
@@ -41,7 +39,7 @@ class CreateSalesTable extends Migration
             $table->decimal('promo_code_discount', 10, 2)
                 ->nullable();
             $table->boolean('is_storno')
-                ->default(0);
+                ->nullable();
             $table->dateTime('date')
                 ->nullable();
             $table->dateTime('last_change_date')

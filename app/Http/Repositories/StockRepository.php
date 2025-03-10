@@ -7,15 +7,8 @@ use App\Models\Stock;
 
 class StockRepository implements BaseRepositoryInterface
 {
-    protected Stock $stock;
-
-    public function __construct(Stock $stock)
+    public function create(array $data): void
     {
-        $this->stock = $stock;
-    }
-
-    public function updateOrCreate(array $conditions, array $data): void
-    {
-        $this->stock->updateOrCreate($conditions, $data);
+        Stock::create($data);
     }
 }

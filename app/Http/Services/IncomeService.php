@@ -19,7 +19,7 @@ class IncomeService
     public function parseIncomes(string $dateFrom, string $dateTo): void
     {
         $page = 1;
-        $limit = 500;
+        $limit = 100;
 
         do {
             $response = Http::get($this->apiUrl, [
@@ -37,8 +37,7 @@ class IncomeService
             $data = $response->json()['data'] ?? [];
 
             foreach ($data as $item) {
-                $this->incomeRepository->updateOrCreate(
-                    ['income_id' => $item['income_id']],
+                $this->incomeRepository->create(
                     [
                         'number' => $item['number'] ?? null,
                         'date' => $item['date'] ?? null,
