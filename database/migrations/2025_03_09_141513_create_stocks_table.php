@@ -4,33 +4,34 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class CreateStocksTable extends Migration
 {
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('g_number')
-                ->nullable();
-            $table->dateTime('date')
-                ->nullable();
+            $table->dateTime('date');
             $table->dateTime('last_change_date')
                 ->nullable();
             $table->string('supplier_article', 255)
                 ->nullable();
-            $table->string('tech_size')
+            $table->string('tech_size', 50)
                 ->nullable();
             $table->string('barcode', 20)
                 ->nullable();
-            $table->decimal('total_price', 10, 2)
+            $table->integer('quantity')
                 ->nullable();
-            $table->decimal('discount_percent', 6, 2)
+            $table->boolean('is_supply')
+                ->nullable();
+            $table->boolean('is_realization')
+                ->nullable();
+            $table->integer('quantity_full')
                 ->nullable();
             $table->string('warehouse_name', 255)
                 ->nullable();
-            $table->string('oblast', 255)
+            $table->integer('in_way_to_client')
                 ->nullable();
-            $table->bigInteger('income_id')
+            $table->integer('in_way_from_client')
                 ->nullable();
             $table->bigInteger('nm_id')
                 ->nullable();
@@ -40,9 +41,11 @@ class CreateOrdersTable extends Migration
                 ->nullable();
             $table->string('brand', 255)
                 ->nullable();
-            $table->boolean('is_cancel')
-                ->default(0);
-            $table->dateTime('cancel_dt')
+            $table->string('sc_code', 20)
+                ->nullable();
+            $table->decimal('price', 10, 2)
+                ->nullable();
+            $table->decimal('discount', 6, 2)
                 ->nullable();
             $table->timestamps();
         });
@@ -50,6 +53,6 @@ class CreateOrdersTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('stocks');
     }
 }
