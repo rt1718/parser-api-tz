@@ -5,17 +5,42 @@ namespace App\Http\Services;
 use Illuminate\Support\Facades\Http;
 use App\Http\Repositories\SaleRepository;
 
+/**
+ * Сервис для парсинга и сохранения данных о продажах.
+ */
 class SaleService
 {
+    /**
+     * @var SaleRepository Репозиторий для работы с продажами.
+     */
     protected SaleRepository $saleRepository;
+
+    /**
+     * @var string URL API для получения данных о продажах.
+     */
     protected string $apiUrl = 'http://89.108.115.241:6969/api/sales';
+
+    /**
+     * @var string API-ключ для авторизации в сервисе.
+     */
     protected string $apiKey = 'E6kUTYrYwZq2tN4QEtyzsbEBk3ie';
 
+    /**
+     * Конструктор сервиса.
+     *
+     * @param SaleRepository $saleRepository Репозиторий для продаж.
+     */
     public function __construct(SaleRepository $saleRepository)
     {
         $this->saleRepository = $saleRepository;
     }
 
+    /**
+     * Парсит данные о продажах за указанный период и сохраняет в БД.
+     *
+     * @param string $dateFrom Начальная дата в формате Y-m-d.
+     * @param string $dateTo Конечная дата в формате Y-m-d.
+     */
     public function parseSales(string $dateFrom, string $dateTo): void
     {
         $page = 1;
